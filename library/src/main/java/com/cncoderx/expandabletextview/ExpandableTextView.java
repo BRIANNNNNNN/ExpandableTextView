@@ -62,18 +62,18 @@ public class ExpandableTextView extends LinearLayout implements ValueAnimator.An
             throw new NullPointerException("not found child view by named \"expandable_button_group\"");
         }
         mExpandedIndicator = mIndicator.findViewById(R.id.expandable_indicator_expanded);
-        if (mExpandedIndicator == null) {
-            throw new NullPointerException("not found child view by named \"expandable_button_expanded\"");
-        }
-        mExpandedIndicator.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!isAnimation) {
-                    mCollapsed = true;
-                    notifyStateChanged(mAnimDuration > 0);
+        if (mExpandedIndicator != null) {
+            mExpandedIndicator.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (!isAnimation) {
+                        mCollapsed = true;
+                        notifyStateChanged(mAnimDuration > 0);
+                    }
                 }
-            }
-        });
+            });
+        }
+
         mCollapsedIndicator = mIndicator.findViewById(R.id.expandable_indicator_collapsed);
         if (mCollapsedIndicator == null) {
             throw new NullPointerException("not found child view by named \"expandable_button_collapsed\"");
@@ -108,12 +108,16 @@ public class ExpandableTextView extends LinearLayout implements ValueAnimator.An
             mIndicator.setVisibility(View.VISIBLE);
             if (mCollapsed) {
                 mCollapsedIndicator.setVisibility(View.VISIBLE);
-                mExpandedIndicator.setVisibility(View.INVISIBLE);
+                if (mExpandedIndicator != null) {
+                    mExpandedIndicator.setVisibility(View.INVISIBLE);
+                }
                 ViewGroup.LayoutParams lParams = mTextView.getLayoutParams();
                 lParams.height = mCollapseTextHeight;
                 mTextView.requestLayout();
             } else {
-                mExpandedIndicator.setVisibility(View.VISIBLE);
+                if (mExpandedIndicator != null) {
+                    mExpandedIndicator.setVisibility(View.VISIBLE);
+                }
                 mCollapsedIndicator.setVisibility(View.INVISIBLE);
                 ViewGroup.LayoutParams lParams = mTextView.getLayoutParams();
                 lParams.height = mExpandTextHeight;
@@ -137,7 +141,9 @@ public class ExpandableTextView extends LinearLayout implements ValueAnimator.An
     void notifyStateChanged(boolean anim) {
         if (isCollapsed()) {
             mCollapsedIndicator.setVisibility(View.VISIBLE);
-            mExpandedIndicator.setVisibility(View.INVISIBLE);
+            if (mExpandedIndicator != null) {
+                mExpandedIndicator.setVisibility(View.INVISIBLE);
+            }
 
             int startHeight = mExpandTextHeight;
             int endHeight = mCollapseTextHeight;
@@ -145,7 +151,9 @@ public class ExpandableTextView extends LinearLayout implements ValueAnimator.An
                 updateLayout(startHeight, endHeight, anim);
             }
         } else {
-            mExpandedIndicator.setVisibility(View.VISIBLE);
+            if (mExpandedIndicator != null) {
+                mExpandedIndicator.setVisibility(View.VISIBLE);
+            }
             mCollapsedIndicator.setVisibility(View.INVISIBLE);
 
             int startHeight = mCollapseTextHeight;
@@ -170,6 +178,9 @@ public class ExpandableTextView extends LinearLayout implements ValueAnimator.An
 
                 @Override
                 public void onAnimationEnd(Animator animation) {
+                    if (mExpandedIndicator == null) {
+                        mCollapsedIndicator.setVisibility(View.GONE);
+                    }
                     isAnimation = false;
                 }
             });
@@ -292,13 +303,19 @@ public class ExpandableTextView extends LinearLayout implements ValueAnimator.An
             }
             if (isCollapsed()) {
                 mCollapsedIndicator.setVisibility(View.VISIBLE);
-                mExpandedIndicator.setVisibility(View.INVISIBLE);
+                if (mExpandedIndicator != null) {
+                    mExpandedIndicator.setVisibility(View.INVISIBLE);
+                }
+
                 ViewGroup.LayoutParams lParams = mTextView.getLayoutParams();
                 lParams.height = collapseTextHeight;
                 mTextView.requestLayout();
             } else {
-                mExpandedIndicator.setVisibility(View.VISIBLE);
+                if (mExpandedIndicator != null) {
+                    mExpandedIndicator.setVisibility(View.VISIBLE);
+                }
                 mCollapsedIndicator.setVisibility(View.INVISIBLE);
+
                 ViewGroup.LayoutParams lParams = mTextView.getLayoutParams();
                 lParams.height = expandTextHeight;
                 mTextView.requestLayout();

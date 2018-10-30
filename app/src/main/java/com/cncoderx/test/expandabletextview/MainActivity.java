@@ -1,6 +1,6 @@
 package com.cncoderx.test.expandabletextview;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.cncoderx.expandabletextview.ExpandableTextView;
