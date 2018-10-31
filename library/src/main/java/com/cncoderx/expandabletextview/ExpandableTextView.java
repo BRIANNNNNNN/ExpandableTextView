@@ -130,7 +130,7 @@ public class ExpandableTextView extends LinearLayout implements ValueAnimator.An
     private int getLinesHeight(int lines) {
         int lineHeight = mTextView.getLineHeight() * lines;
         int padding = mTextView.getCompoundPaddingTop() + mTextView.getCompoundPaddingBottom();
-        return lineHeight + padding;
+        return lineHeight + padding + ((int) (mTextView.getLineHeight() / 4));
     }
 
     public void toggle() {
