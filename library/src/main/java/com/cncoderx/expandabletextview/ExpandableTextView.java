@@ -109,7 +109,7 @@ public class ExpandableTextView extends LinearLayout implements ValueAnimator.An
             if (mCollapsed) {
                 mCollapsedIndicator.setVisibility(View.VISIBLE);
                 if (mExpandedIndicator != null) {
-                    mExpandedIndicator.setVisibility(View.INVISIBLE);
+                    mExpandedIndicator.setVisibility(View.GONE);
                 }
                 ViewGroup.LayoutParams lParams = mTextView.getLayoutParams();
                 lParams.height = mCollapseTextHeight;
@@ -118,7 +118,7 @@ public class ExpandableTextView extends LinearLayout implements ValueAnimator.An
                 if (mExpandedIndicator != null) {
                     mExpandedIndicator.setVisibility(View.VISIBLE);
                 }
-                mCollapsedIndicator.setVisibility(View.INVISIBLE);
+                mCollapsedIndicator.setVisibility(View.GONE);
                 ViewGroup.LayoutParams lParams = mTextView.getLayoutParams();
                 lParams.height = mExpandTextHeight;
                 mTextView.requestLayout();
@@ -142,7 +142,7 @@ public class ExpandableTextView extends LinearLayout implements ValueAnimator.An
         if (isCollapsed()) {
             mCollapsedIndicator.setVisibility(View.VISIBLE);
             if (mExpandedIndicator != null) {
-                mExpandedIndicator.setVisibility(View.INVISIBLE);
+                mExpandedIndicator.setVisibility(View.GONE);
             }
 
             int startHeight = mExpandTextHeight;
@@ -154,7 +154,7 @@ public class ExpandableTextView extends LinearLayout implements ValueAnimator.An
             if (mExpandedIndicator != null) {
                 mExpandedIndicator.setVisibility(View.VISIBLE);
             }
-            mCollapsedIndicator.setVisibility(View.INVISIBLE);
+            mCollapsedIndicator.setVisibility(View.GONE);
 
             int startHeight = mCollapseTextHeight;
             int endHeight = mExpandTextHeight;
@@ -304,7 +304,7 @@ public class ExpandableTextView extends LinearLayout implements ValueAnimator.An
             if (isCollapsed()) {
                 mCollapsedIndicator.setVisibility(View.VISIBLE);
                 if (mExpandedIndicator != null) {
-                    mExpandedIndicator.setVisibility(View.INVISIBLE);
+                    mExpandedIndicator.setVisibility(View.GONE);
                 }
 
                 ViewGroup.LayoutParams lParams = mTextView.getLayoutParams();
@@ -314,7 +314,7 @@ public class ExpandableTextView extends LinearLayout implements ValueAnimator.An
                 if (mExpandedIndicator != null) {
                     mExpandedIndicator.setVisibility(View.VISIBLE);
                 }
-                mCollapsedIndicator.setVisibility(View.INVISIBLE);
+                mCollapsedIndicator.setVisibility(View.GONE);
 
                 ViewGroup.LayoutParams lParams = mTextView.getLayoutParams();
                 lParams.height = expandTextHeight;
